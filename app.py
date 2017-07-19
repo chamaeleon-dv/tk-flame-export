@@ -146,7 +146,7 @@ class FlameExport(Application):
             self._export_preset = self.export_preset_handler.get_preset_by_name(export_preset_name)
             
             # populate the host to use for the export. Currently hard coded to local
-            info["destinationHost"] = self.engine.get_server_hostname()
+            info["destinationHost"] = self.engine.get_backburner_hostname()
             
             # let the export root path align with the primary project root
             info["destinationPath"] = self.sgtk.project_path
