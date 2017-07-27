@@ -55,6 +55,12 @@ class SubmitDialog(QtGui.QWidget):
         Returns the comments entered by the user
         """
         return self.ui.comments.toPlainText()
+
+    def get_shotgun_sequencename(self):
+        """
+        Returns the shotgun_sequencename entered by the user
+        """
+        return self.ui.shotgun_sequencename.toPlainText()
     
     def get_video_preset(self):
         """

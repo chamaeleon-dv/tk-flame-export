@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>487</width>
-    <height>577</height>
+    <height>594</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,6 +21,36 @@
      </property>
      <property name="pixmap">
       <pixmap resource="resources.qrc">:/tk-flame-export/ui_splash.png</pixmap>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3">
+     <property name="text">
+      <string>Connect to following Sequence in Shotgun:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPlainTextEdit" name="shotgun_sequencename">
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>25</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>25</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_4">
+     <property name="text">
+      <string>Comment:</string>
      </property>
     </widget>
    </item>

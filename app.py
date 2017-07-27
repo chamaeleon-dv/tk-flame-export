@@ -58,7 +58,10 @@ class FlameExport(Application):
                 
         # sequence that is being exported
         self._sequence = None
-        
+
+        # track shotgun sequence name
+        self._shotgun_sequencename = ""
+                
         # create a submit helper
         # because parts of this app runs on the farm, which doesn't have a UI,
         # there are two distinct modules on disk, one which is QT dependent and
@@ -140,6 +143,8 @@ class FlameExport(Application):
         else:
             # get comments from user
             self._user_comments = widget.get_comments()
+            # Chamaeleon: get shotgun_sequencename from user
+            self._shotgun_sequencename = widget.get_shotgun_sequencename()
             # get export preset name
             export_preset_name = widget.get_video_preset()
             # resolve this to an object
@@ -210,7 +215,12 @@ class FlameExport(Application):
             return
 
         # set up object to represent sequence and shots
-        self._sequence = export_utils.Sequence(sequence_name)
+        # Chamaeleon Use custom field shotgun_sequencename from Export Dialog if set
+        # to connect this with the correct Sequence in Shotgun
+        if len(self._shotgun_sequencename) > 2:
+            self._sequence = export_utils.Sequence(self._shotgun_sequencename)
+        else:            
+            self._sequence = export_utils.Sequence(sequence_name)
         for shot_name in shot_names:
             self._sequence.add_shot(shot_name)
 
