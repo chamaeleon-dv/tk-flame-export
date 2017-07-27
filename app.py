@@ -58,7 +58,7 @@ class FlameExport(Application):
                 
         # sequence that is being exported
         self._sequence = None
-        
+
         # create a submit helper
         # because parts of this app runs on the farm, which doesn't have a UI,
         # there are two distinct modules on disk, one which is QT dependent and
@@ -187,6 +187,26 @@ class FlameExport(Application):
 
         sequence_name = info["sequenceName"]
         shot_names = info["shotNames"]
+        
+        #
+        # Chamaeleon Ask for Sequence Name in Shotgun
+        #
+        # pop up a UI asking the user for sequence Name used in shotgun
+        dialogs = self.import_module("dialogs")
+        (return_code, widget) = self.engine.show_modal("Connect to Sequence in Shotgun:",
+                                                       self,
+                                                       dialogs.SubmitCustomSequenceNameDialog,
+                                                       info['sequenceName'])
+        
+        if return_code == QtGui.QDialog.Rejected:
+            # user pressed cancel
+            info["abort"] = True
+            info["abortMessage"] = "User cancelled the operation."
+            return
+        else:
+            # Chamaeleon: get shotgun_sequencename from user
+            sequence_name = widget.get_shotgun_sequencename()
+            
 
         if len(shot_names) == 0:
             QtGui.QMessageBox.warning(None,

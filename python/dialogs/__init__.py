@@ -9,5 +9,6 @@
 # not expressly granted therein are reserved by Shotgun Software Inc.
 
 from .submit_dialog import SubmitDialog
+from .submit_custom_sequence_name_dialog import SubmitCustomSequenceNameDialog
 from .batch_render_dialog import BatchRenderDialog
 from .summary_dialog import SubmissionFailedDialog, SubmissionCompleteDialog

@@ -11,7 +11,7 @@ from tank.platform.qt import QtCore, QtGui
 class Ui_SubmitDialog(object):
     def setupUi(self, SubmitDialog):
         SubmitDialog.setObjectName("SubmitDialog")
-        SubmitDialog.resize(487, 577)
+        SubmitDialog.resize(487, 594)
         self.verticalLayout = QtGui.QVBoxLayout(SubmitDialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.label_2 = QtGui.QLabel(SubmitDialog)

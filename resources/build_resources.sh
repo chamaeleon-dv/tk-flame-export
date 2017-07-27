@@ -40,6 +40,7 @@ build_ui submit_dialog
 build_ui batch_render_dialog
 build_ui submission_complete_dialog
 build_ui submission_failed_dialog
+build_ui submit_custom_sequence_name_dialog
 # add any additional .ui files you want converted here!
 
 # build resources
