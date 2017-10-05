@@ -292,6 +292,8 @@ class ExportPreset(object):
         # we always generate xmls with a matching preset version.   
         preset_version = self._app.engine.preset_version
         
+        #Chamaeleon: Changed useTimecode to "True", so that the File Numbering gets the
+        #            Numbers from the timecode, rather than setting to a new Value
         xml = """<?xml version="1.0" encoding="UTF-8"?>
             <preset version="%s">
                <type>sequence</type>
@@ -324,7 +326,7 @@ class ExportPreset(object):
                <name>
                   <framePadding>{FRAME_PADDING}</framePadding>
                   <startFrame>{START_FRAME}</startFrame>
-                  <useTimecode>False</useTimecode>
+                  <useTimecode>True</useTimecode>
                </name>
                <createOpenClip>
                   <namePattern>{SEGMENT_CLIP_NAME_PATTERN}</namePattern>
