@@ -58,6 +58,9 @@ class FlameExport(Application):
                 
         # sequence that is being exported
         self._sequence = None
+        
+        # track shotgun sequence name
+        self._shotgun_sequencename = ''
 
         # create a submit helper
         # because parts of this app runs on the farm, which doesn't have a UI,
@@ -206,6 +209,7 @@ class FlameExport(Application):
         else:
             # Chamaeleon: get shotgun_sequencename from user
             sequence_name = widget.get_shotgun_sequencename()
+            self._shotgun_sequencename = widget.get_shotgun_sequencename()
             
 
         if len(shot_names) == 0:
@@ -283,7 +287,12 @@ class FlameExport(Application):
         asset_type = info["assetType"]
         asset_name = info["assetName"]
         shot_name = info["shotName"]
-        sequence_name = info["sequenceName"]
+        # Chamaeleon:
+        # we need the Sequence Name, which is used in shotgun, not the original Name from Flame
+        # Original Line from Shotgun:
+        # sequence_name = info["sequenceName"]
+        # swapped with:
+        sequence_name = self._shotgun_sequencename
 
         # only support the export of one sequence at a time
         if self._sequence is None or self._sequence.name != sequence_name:
@@ -433,7 +442,9 @@ class FlameExport(Application):
         asset_type = info["assetType"]
         segment_name = info["assetName"]
         shot_name = info["shotName"]
-        sequence_name = info["sequenceName"]        
+        # Chamaeleon: we will use the sequenceName we are Using in Shotgun
+        #sequence_name = info["sequenceName"]        
+        sequence_name = self._shotgun_sequencename
 
         if asset_type not in ["video", "batch"]:
             # ignore anything that isn't video or batch
